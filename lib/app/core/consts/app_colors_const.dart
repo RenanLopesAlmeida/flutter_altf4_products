@@ -13,5 +13,10 @@ class CustomColors {
   static const Color black = Color(0xff2C2C2C);
   static const Color white = Color(0xffF0F0F0);
   static const Color greyCard = Color(0xffF5F5F5);
+  static const Color floatingBoxColor = Color(0xffF1F1F1);
+  static const Color floatingBoxTitleColor = Color(0xff929292);
+  static const Color cardMoneyColor = Color(0xff2A2A2A);
   static const Color whiteCard = Color(0xffFAF9FF);
+  static const Color cardTitle = Color(0xff555555);
+  static const Color favoriteBorderColor = Color(0xff818181);
 }

@@ -1,5 +1,7 @@
+import 'package:altf4_produtos/app/controllers/products/products_controller.dart';
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/home/home_screen.dart';
+import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final _productsController = ProductsController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +25,19 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Raleway',
       ),
-      home: HomeScreen(),
+      home: FutureBuilder<List<ProductModel>>(
+        future: _productsController.productsList,
+        builder: (context, snapshot) {
+          if (snapshot.error != null) {
+            Center(child: Text('Could not fetch products'));
+          }
+          if (snapshot.hasData) {
+            return HomeScreen();
+          }
+
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
     );
   }
 }

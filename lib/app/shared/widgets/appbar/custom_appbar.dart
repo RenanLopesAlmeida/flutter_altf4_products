@@ -1,9 +1,14 @@
+import 'package:altf4_produtos/app/controllers/products/products_controller.dart';
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/shared/widgets/appbar/card_appbar.dart';
 import 'package:altf4_produtos/app/shared/widgets/appbar/home_title_appbar.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppbar extends StatelessWidget {
+  final ProductsController productsController;
+
+  const CustomAppbar({this.productsController});
+
   @override
   Widget build(BuildContext context) {
     final _deviceSize = MediaQuery.of(context).size;
@@ -40,7 +45,7 @@ class CustomAppbar extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.center,
-            child: CardAppbar(),
+            child: CardAppbar(productsController: productsController),
           ),
         ],
       ),
