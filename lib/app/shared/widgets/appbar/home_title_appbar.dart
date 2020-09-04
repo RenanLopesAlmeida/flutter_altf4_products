@@ -9,10 +9,12 @@ class HomeTitleAppBar extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(right: 40),
           child: Text(
-            'A L T F 4',
+            'S H O P I N',
             style: TextStyle(
               fontSize: 30,
               color: CustomColors.white,
+              fontFamily: 'Raleway-Regular',
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

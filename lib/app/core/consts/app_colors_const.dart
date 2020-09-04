@@ -7,7 +7,7 @@ class CustomColors {
   ];
 
   static const Color primary = Color(0xff8D53FF);
-  static const Color bodyColor = Color(0xffFBFBFB);
+  static const Color bodyColor = Color(0xfff5f2f2);
   static const Color lightGrey = Color(0xffEDEDED);
   static const Color darkGrey = Color(0xff898989);
   static const Color black = Color(0xff2C2C2C);

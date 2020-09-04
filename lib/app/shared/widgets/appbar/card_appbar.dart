@@ -8,10 +8,10 @@ class CardAppbar extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.only(top: 80),
-      width: _deviceSize.width * 0.8,
+      width: _deviceSize.width * 0.86,
       height: _deviceSize.height * 0.18,
       decoration: BoxDecoration(
-        color: CustomColors.whiteCard,
+        color: CustomColors.whiteCard.withOpacity(0.8),
         borderRadius: BorderRadius.circular(20),
       ),
     );

@@ -1,8 +1,11 @@
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/home/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -17,6 +20,7 @@ class MyApp extends StatelessWidget {
         primaryColor: CustomColors.primary,
         accentColor: CustomColors.primary,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Raleway',
       ),
       home: HomeScreen(),
     );

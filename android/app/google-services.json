@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "110257314273",
+    "firebase_url": "https://altf4-7f1f2.firebaseio.com",
+    "project_id": "altf4-7f1f2",
+    "storage_bucket": "altf4-7f1f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110257314273:android:e58959fa3b5b5262c6daa0",
+        "android_client_info": {
+          "package_name": "com.example.altf4_produtos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110257314273-nt8hraofd8gsr2q33a9i6nmc5afd4cli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6yGP7Q5np7P2vYAXlza6TYcBD43qiunY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110257314273-nt8hraofd8gsr2q33a9i6nmc5afd4cli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
