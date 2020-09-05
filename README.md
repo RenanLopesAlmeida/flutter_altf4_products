@@ -1,16 +1,9 @@
 # altf4_produtos
 
-A new Flutter project.
+## Como está ficando:
 
-## Getting Started
+![image](https://user-images.githubusercontent.com/17504941/92305946-326c1900-ef62-11ea-9c0c-afe0c352626a.png)
 
-This project is a starting point for a Flutter application.
+![image](https://user-images.githubusercontent.com/17504941/92305961-4d3e8d80-ef62-11ea-9155-e93856c07983.png)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://user-images.githubusercontent.com/17504941/92305983-74955a80-ef62-11ea-9d9d-07512e238a7e.png)
