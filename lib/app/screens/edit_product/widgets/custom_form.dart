@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 
 class CustomForm extends StatefulWidget {
   final Size deviceSize;
+  final ProductModel editedProduct;
+  final Map<String, dynamic> initValues;
 
-  CustomForm(this.deviceSize);
+  CustomForm({this.deviceSize, this.editedProduct, this.initValues});
 
   @override
   _CustomFormState createState() => _CustomFormState();
@@ -44,10 +46,17 @@ class _CustomFormState extends State<CustomForm> {
 
     try {
       ProductModel product = ProductModel.fromJson(_formData);
-      print(product.name);
-      await _productsController.addProduct(product);
+      product.id = widget.editedProduct.id;
+
+      if (widget.editedProduct == null) {
+        await _productsController.addProduct(product);
+      } else {
+        await _productsController.updateProduct(product);
+      }
+
+      Navigator.of(context).pop();
     } catch (error) {
-      print('ERROR when tried to add a new product. ERROR: $error');
+      print('$error');
     }
   }
 
@@ -64,11 +73,16 @@ class _CustomFormState extends State<CustomForm> {
             child: TextFormField(
               focusNode: _nameFocusNode,
               textInputAction: TextInputAction.next,
+              initialValue: widget.initValues['name'],
               decoration: InputDecoration(
-                hintText: 'Name',
+                labelText: 'Name',
+                labelStyle: TextStyle(
+                  height: 0,
+                ),
                 border: InputBorder.none,
                 errorStyle: TextStyle(
-                  height: 0.1,
+                  height: 0.3,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               validator: (value) {
@@ -85,11 +99,16 @@ class _CustomFormState extends State<CustomForm> {
               focusNode: _priceFocusNode,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
+              initialValue: widget.initValues['price'],
               decoration: InputDecoration(
-                hintText: 'Price',
+                labelText: 'Price',
+                labelStyle: TextStyle(
+                  height: 0,
+                ),
                 border: InputBorder.none,
                 errorStyle: TextStyle(
-                  height: 0.1,
+                  height: 0.3,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               onFieldSubmitted: (value) {
@@ -109,11 +128,14 @@ class _CustomFormState extends State<CustomForm> {
               focusNode: _quantityFocusNode,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
+              initialValue: widget.initValues['quantity'],
               decoration: InputDecoration(
-                hintText: 'Quantity',
+                labelText: 'Quantity',
+                labelStyle: TextStyle(height: 0),
                 border: InputBorder.none,
                 errorStyle: TextStyle(
-                  height: 0.1,
+                  height: 0.3,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               onFieldSubmitted: (value) {
@@ -130,11 +152,16 @@ class _CustomFormState extends State<CustomForm> {
           CustomFormField(
             deviceSize: widget.deviceSize,
             child: TextFormField(
+              initialValue: widget.initValues['image_url'],
               decoration: InputDecoration(
-                hintText: 'Image URL',
+                labelText: 'Image URL',
+                labelStyle: TextStyle(
+                  height: 0,
+                ),
                 border: InputBorder.none,
                 errorStyle: TextStyle(
-                  height: 0.1,
+                  height: 0.3,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               validator: (value) {

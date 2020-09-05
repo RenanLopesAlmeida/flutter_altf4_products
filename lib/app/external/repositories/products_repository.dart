@@ -31,23 +31,24 @@ class ProductsRepository extends ProductsInterface {
     //return productsList[0];
   }
 
-  /**
-   * TODO LIST:
-   * VALIDAR OS CAMPOS DA ADIÇÃO DE UM NOVO PRODUTO
-   * AJUSTAR O CAMPO IMAGE_URL POIS ESTÁ CORTANDO O LABEL TEXT
-   * CRIAR A PÁGINA DE VISUALIZAR UM PRODUTO QUANDO CLICAR NELE
-   * FAZER A FEATURE DE EDITAR UM PRODUTO
-   * FAZER A FEATURE DE EXCLUIR UM PRODUTO
-   */
-
   @override
   Future<void> addProduct(ProductModel product) async {
     try {
-      await productsCollection.add(product.toJson());
+      final document = await productsCollection.add(product.toJson());
+      await productsCollection.doc(document.id).update({'id': document.id});
       _productsList.add(product);
     } catch (error) {
       print('Error when tried to fetch products. ERROR: $error');
       return null;
+    }
+  }
+
+  @override
+  Future<void> updateProduct(ProductModel product) async {
+    try {
+      await productsCollection.doc(product.id).update(product.toJson());
+    } catch (error) {
+      print('Error when tried to Update product. ERROR: $error');
     }
   }
 }

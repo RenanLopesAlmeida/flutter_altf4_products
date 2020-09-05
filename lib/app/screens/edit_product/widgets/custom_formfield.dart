@@ -12,13 +12,13 @@ class CustomFormField extends StatelessWidget {
     return Container(
       height: 50,
       width: deviceSize.width,
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      padding: EdgeInsets.only(left: 20, bottom: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      padding: const EdgeInsets.only(left: 20),
       decoration: BoxDecoration(
         color: CustomColors.white.withOpacity(0.6),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Center(child: child),
+      child: child,
     );
   }
 }

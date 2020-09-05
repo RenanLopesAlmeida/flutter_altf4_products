@@ -29,9 +29,20 @@ abstract class _ProductsControllerBase with Store {
   @action
   Future<void> addProduct(ProductModel product) async {
     await _productsRepository.addProduct(product);
+    await productsList;
   }
 
   Future<ProductModel> get bestSeller async {
     return _productsList[0];
+  }
+
+  @action
+  Future<void> updateProduct(ProductModel product) async {
+    try {
+      await _productsRepository.updateProduct(product);
+      await productsList;
+    } catch (error) {
+      print(error);
+    }
   }
 }

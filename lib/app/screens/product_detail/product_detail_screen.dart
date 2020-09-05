@@ -1,6 +1,7 @@
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/product_detail/widgets/product_info.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
+import 'package:altf4_produtos/app/shared/widgets/appbar/back_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -30,27 +31,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final _deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: CustomColors.headerGradient[1],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: CustomColors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          product.name,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: CustomColors.white,
-          ),
-        ),
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 50),
+          child: BackAppbar(product.name)),
       backgroundColor: CustomColors.bodyColor,
       body: Container(
         height: _deviceSize.height,

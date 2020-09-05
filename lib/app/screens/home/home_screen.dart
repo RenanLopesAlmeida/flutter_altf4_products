@@ -2,8 +2,10 @@ import 'package:altf4_produtos/app/controllers/products/products_controller.dart
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/edit_product/edit_product_screen.dart';
 import 'package:altf4_produtos/app/screens/home/widgets/product_tile.dart';
+import 'package:altf4_produtos/app/screens/products_overview/products_overview_screen.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/widgets/appbar/custom_appbar.dart';
+import 'package:altf4_produtos/app/shared/widgets/custom_circular_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -59,37 +61,44 @@ class HomeScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, ProductsOverviewScreen.routeName);
+                      },
                     ),
                   ],
                 ),
               ),
-              Container(
-                height: 300,
-                color: Colors.deepOrangeAccent.withOpacity(0.4),
-                child: Observer(builder: (_) {
-                  final _productsList = _productsController.productsList;
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                child: Container(
+                  height: 300,
+                  color: Colors.deepOrangeAccent.withOpacity(0.1),
+                  child: Observer(builder: (_) {
+                    final _productsList = _productsController.productsList;
 
-                  return FutureBuilder<List<ProductModel>>(
-                    future: _productsList,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Container(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: BouncingScrollPhysics(),
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, index) {
-                              return ProductTile(product: snapshot.data[index]);
-                            },
-                          ),
-                        );
-                      }
+                    return FutureBuilder<List<ProductModel>>(
+                      future: _productsList,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Container(
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              physics: BouncingScrollPhysics(),
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) {
+                                return ProductTile(
+                                    product: snapshot.data[index]);
+                              },
+                            ),
+                          );
+                        }
 
-                      return Center(child: CircularProgressIndicator());
-                    },
-                  );
-                }),
+                        return Center(child: CustomCircularProgress());
+                      },
+                    );
+                  }),
+                ),
               ),
             ],
           ),

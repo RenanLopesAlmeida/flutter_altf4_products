@@ -4,8 +4,41 @@ import 'package:altf4_produtos/app/screens/edit_product/widgets/custom_form.dart
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-class EditProductScreen extends StatelessWidget {
+class EditProductScreen extends StatefulWidget {
   static final String routeName = '/editProduct';
+
+  @override
+  _EditProductScreenState createState() => _EditProductScreenState();
+}
+
+class _EditProductScreenState extends State<EditProductScreen> {
+  bool _isLoading = true;
+  ProductModel editedProduct;
+
+  var _initValues = {
+    'name': '',
+    'price': '',
+    'quantity': '',
+    'imageUrl': '',
+  };
+
+  @override
+  void didChangeDependencies() {
+    if (_isLoading) {
+      editedProduct = ModalRoute.of(context).settings.arguments as ProductModel;
+
+      if (editedProduct != null) {
+        _initValues = {
+          'name': editedProduct.name,
+          'price': editedProduct.price.toString(),
+          'quantity': editedProduct.quantity.toString(),
+          'image_url': editedProduct.imageUrl,
+        };
+      }
+    }
+    _isLoading = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +50,7 @@ class EditProductScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: CustomColors.headerGradient[1],
         title: Text(
-          'Edit Product',
+          (editedProduct != null) ? 'Edit Product' : 'Add Product',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -64,7 +97,11 @@ class EditProductScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 30),
-                child: CustomForm(_deviceSize),
+                child: CustomForm(
+                  deviceSize: _deviceSize,
+                  editedProduct: editedProduct,
+                  initValues: _initValues,
+                ),
               ),
             ],
           ),

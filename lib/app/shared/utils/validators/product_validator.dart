@@ -28,9 +28,9 @@ class ProductValidator {
       return 'Please enter an image URL';
     }
 
-    if (!value.endsWith('.jpg') &&
-        !value.endsWith('.png') &&
-        !value.endsWith('.jpeg')) {
+    if (!value.contains('.jpg') &&
+        !value.contains('.png') &&
+        !value.contains('.jpeg')) {
       return 'Please enter a valid URL';
     }
 

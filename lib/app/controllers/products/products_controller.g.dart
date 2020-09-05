@@ -33,6 +33,14 @@ mixin _$ProductsController on _ProductsControllerBase, Store {
     return _$addProductAsyncAction.run(() => super.addProduct(product));
   }
 
+  final _$updateProductAsyncAction =
+      AsyncAction('_ProductsControllerBase.updateProduct');
+
+  @override
+  Future<void> updateProduct(ProductModel product) {
+    return _$updateProductAsyncAction.run(() => super.updateProduct(product));
+  }
+
   @override
   String toString() {
     return '''

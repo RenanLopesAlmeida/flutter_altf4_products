@@ -10,7 +10,7 @@ class HomeTitleAppBar extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(right: 40),
           child: const Text(
-            'S H O P',
+            'O L X',
             style: TextStyle(
               fontSize: 30,
               color: CustomColors.white,
