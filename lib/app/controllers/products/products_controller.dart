@@ -16,8 +16,19 @@ abstract class _ProductsControllerBase with Store {
       await _productsRepository.fetchProducts;
 
   Future<List<ProductModel>> get productsList async {
-    _productsList = await _productsRepository.fetchProducts;
-    return _productsList;
+    _productsList = [];
+    try {
+      _productsList = await _productsRepository.fetchProducts;
+      return _productsList;
+    } catch (error) {
+      print('ERROR when tried to fetch products. ERROR: $error');
+      return null;
+    }
+  }
+
+  @action
+  Future<void> addProduct(ProductModel product) async {
+    await _productsRepository.addProduct(product);
   }
 
   Future<ProductModel> get bestSeller async {

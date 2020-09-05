@@ -2,7 +2,7 @@ class ProductModel {
   String id;
   String name;
   int quantity;
-  int price;
+  double price;
   String imageUrl;
 
   ProductModel({this.id, this.name, this.quantity, this.price, this.imageUrl});

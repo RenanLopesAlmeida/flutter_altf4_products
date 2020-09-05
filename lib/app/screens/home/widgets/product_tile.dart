@@ -13,62 +13,67 @@ class ProductTile extends StatelessWidget {
     return Container(
       height: 200,
       width: 200,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        elevation: 10,
         color: CustomColors.whiteCard,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              ProductHeaderCard(product),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(top: 10),
-              child: Center(
-                child: Text(
-                  product.name,
-                  style: TextStyle(
-                    color: CustomColors.cardTitle,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                ProductHeaderCard(product),
+              ],
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Center(
+                  child: Text(
+                    product.name,
+                    style: TextStyle(
+                      color: CustomColors.cardTitle,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              width: 80,
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: CustomColors.floatingBoxColor,
+            Expanded(
+              child: Container(
+                width: 80,
+                padding: const EdgeInsets.all(5),
+                margin: const EdgeInsets.only(left: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: CustomColors.floatingBoxColor,
+                ),
+                child: Center(
+                  child: Text(
+                    'Stock: ${product.quantity}',
+                    style: TextStyle(color: CustomColors.floatingBoxTitleColor),
+                  ),
+                ),
               ),
-              child: Center(
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10, left: 10),
                 child: Text(
-                  'Stock: ${product.quantity}',
-                  style: TextStyle(color: CustomColors.floatingBoxTitleColor),
+                  'R\$ ${product.price}',
+                  style: TextStyle(
+                    color: CustomColors.cardMoneyColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(top: 5),
-              child: Text(
-                'R\$ ${product.price}',
-                style: TextStyle(
-                  color: CustomColors.cardMoneyColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

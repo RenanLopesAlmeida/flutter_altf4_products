@@ -8,25 +8,46 @@ class ProductsRepository extends ProductsInterface {
 
   List<ProductModel> _productsList = [];
 
-  /**
-   * TODO: fazer a lista receber diretamente os dados e lá no main verificar se já tem os dados
-   */
-
-  //Future<List<ProductModel>> get productsList async => [..._productsList];
-
   Future<List<ProductModel>> get fetchProducts async {
+    _productsList = [];
     ProductModel product;
 
-    QuerySnapshot querySnapshot = await productsCollection.get();
+    try {
+      QuerySnapshot querySnapshot = await productsCollection.get();
 
-    querySnapshot.docs.forEach((doc) {
-      product = ProductModel.fromJson(doc.data());
-      _productsList.add(product);
-    });
-    return [..._productsList];
+      querySnapshot.docs.forEach((doc) {
+        product = ProductModel.fromJson(doc.data());
+        _productsList.add(product);
+      });
+
+      return [..._productsList];
+    } catch (error) {
+      print('Error when tried to fetch products on repository. ERROR: $error');
+      return null;
+    }
   }
 
   Future<ProductModel> get bestSeller async {
     //return productsList[0];
+  }
+
+  /**
+   * TODO LIST:
+   * VALIDAR OS CAMPOS DA ADIÇÃO DE UM NOVO PRODUTO
+   * AJUSTAR O CAMPO IMAGE_URL POIS ESTÁ CORTANDO O LABEL TEXT
+   * CRIAR A PÁGINA DE VISUALIZAR UM PRODUTO QUANDO CLICAR NELE
+   * FAZER A FEATURE DE EDITAR UM PRODUTO
+   * FAZER A FEATURE DE EXCLUIR UM PRODUTO
+   */
+
+  @override
+  Future<void> addProduct(ProductModel product) async {
+    try {
+      await productsCollection.add(product.toJson());
+      _productsList.add(product);
+    } catch (error) {
+      print('Error when tried to fetch products. ERROR: $error');
+      return null;
+    }
   }
 }

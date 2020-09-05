@@ -1,5 +1,6 @@
 import 'package:altf4_produtos/app/controllers/products/products_controller.dart';
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
+import 'package:altf4_produtos/app/screens/edit_product/edit_product_screen.dart';
 import 'package:altf4_produtos/app/screens/home/home_screen.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Raleway',
       ),
+      routes: {
+        HomeScreen.routeName: (context) => HomeScreen(),
+        EditProductScreen.routeName: (context) => EditProductScreen(),
+      },
       home: FutureBuilder<List<ProductModel>>(
         future: _productsController.productsList,
         builder: (context, snapshot) {

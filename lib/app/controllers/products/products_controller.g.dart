@@ -25,6 +25,14 @@ mixin _$ProductsController on _ProductsControllerBase, Store {
     });
   }
 
+  final _$addProductAsyncAction =
+      AsyncAction('_ProductsControllerBase.addProduct');
+
+  @override
+  Future<void> addProduct(ProductModel product) {
+    return _$addProductAsyncAction.run(() => super.addProduct(product));
+  }
+
   @override
   String toString() {
     return '''

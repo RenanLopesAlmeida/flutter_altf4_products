@@ -22,16 +22,15 @@ class CustomAppbar extends StatelessWidget {
             width: _deviceSize.width,
             height: _deviceSize.height * 0.3,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: const Radius.circular(40),
-                bottomRight: const Radius.circular(40),
+              borderRadius: BorderRadius.vertical(
+                bottom: const Radius.circular(30),
               ),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  CustomColors.headerGradient[0],
                   CustomColors.headerGradient[1],
+                  CustomColors.headerGradient[0],
                 ],
               ),
             ),
