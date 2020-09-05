@@ -1,6 +1,7 @@
 import 'package:altf4_produtos/app/core/consts/app_assets_const.dart';
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/edit_product/widgets/custom_form.dart';
+import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 class EditProductScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class EditProductScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: CustomColors.headerGradient[1],
         title: Text(
-          'Add a new Product',
+          'Edit Product',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
