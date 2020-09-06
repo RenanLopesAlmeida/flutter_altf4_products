@@ -3,7 +3,7 @@
 ## Como está ficando:
 
 
-![image](https://user-images.githubusercontent.com/17504941/92332399-498b3380-f054-11ea-879c-14177e333198.png)
+![image](https://user-images.githubusercontent.com/17504941/92332668-ec907d00-f055-11ea-95ec-0acc5d4efb9d.png)
 
 ![image](https://user-images.githubusercontent.com/17504941/92332492-ac7cca80-f054-11ea-8a1a-e952953c45ce.png)
 
