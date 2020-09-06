@@ -2,10 +2,11 @@
 
 ## Como está ficando:
 
-![image](https://user-images.githubusercontent.com/17504941/92305946-326c1900-ef62-11ea-9c0c-afe0c352626a.png)
 
-![image](https://user-images.githubusercontent.com/17504941/92305961-4d3e8d80-ef62-11ea-9155-e93856c07983.png)
+![image](https://user-images.githubusercontent.com/17504941/92332399-498b3380-f054-11ea-879c-14177e333198.png)
 
-![image](https://user-images.githubusercontent.com/17504941/92305983-74955a80-ef62-11ea-9d9d-07512e238a7e.png)
+![image](https://user-images.githubusercontent.com/17504941/92332492-ac7cca80-f054-11ea-8a1a-e952953c45ce.png)
 
-![image](https://user-images.githubusercontent.com/17504941/92307828-803b4e00-ef6f-11ea-8aab-de239b010f08.png)
+![image](https://user-images.githubusercontent.com/17504941/92332415-67589880-f054-11ea-9e19-8bb1b7afde4c.png)
+
+![image](https://user-images.githubusercontent.com/17504941/92332444-7e978600-f054-11ea-9be1-8432e0a7d075.png)
