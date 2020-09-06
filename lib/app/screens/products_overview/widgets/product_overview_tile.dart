@@ -1,11 +1,13 @@
 import 'package:altf4_produtos/app/screens/edit_product/edit_product_screen.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ProductOverviewTile extends StatelessWidget {
   final ProductModel product;
+  final Function handleDeleteProduct;
 
-  ProductOverviewTile(this.product);
+  ProductOverviewTile({this.product, this.handleDeleteProduct});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,9 @@ class ProductOverviewTile extends StatelessWidget {
               leading: CircleAvatar(
                 child: Image.network(product.imageUrl, fit: BoxFit.contain),
               ),
-              title: Text(product.name),
+              title: Observer(builder: (_) {
+                return Text(product.name);
+              }),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -38,7 +42,7 @@ class ProductOverviewTile extends StatelessWidget {
                   ),
                   IconButton(
                     icon: Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {},
+                    onPressed: handleDeleteProduct,
                   ),
                 ],
               )),

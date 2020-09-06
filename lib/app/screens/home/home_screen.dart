@@ -74,30 +74,30 @@ class HomeScreen extends StatelessWidget {
                 child: Container(
                   height: 300,
                   color: Colors.deepOrangeAccent.withOpacity(0.1),
-                  child: Observer(builder: (_) {
-                    final _productsList = _productsController.productsList;
-
-                    return FutureBuilder<List<ProductModel>>(
-                      future: _productsList,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return Container(
-                            child: ListView.builder(
+                  child: FutureBuilder(
+                    future: _productsController.fetchProducts(),
+                    builder: (context, snapshot) {
+                      var productList = _productsController.productsList;
+                      if (snapshot.hasData) {
+                        return Container(
+                          child: Observer(builder: (_) {
+                            return ListView.builder(
                               scrollDirection: Axis.horizontal,
                               physics: BouncingScrollPhysics(),
-                              itemCount: snapshot.data.length,
+                              itemCount: productList.length,
                               itemBuilder: (context, index) {
                                 return ProductTile(
-                                    product: snapshot.data[index]);
+                                  product: productList[index],
+                                );
                               },
-                            ),
-                          );
-                        }
+                            );
+                          }),
+                        );
+                      }
 
-                        return Center(child: CustomCircularProgress());
-                      },
-                    );
-                  }),
+                      return Center(child: CustomCircularProgress());
+                    },
+                  ),
                 ),
               ),
             ],

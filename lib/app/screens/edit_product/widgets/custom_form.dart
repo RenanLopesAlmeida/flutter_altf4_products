@@ -4,6 +4,7 @@ import 'package:altf4_produtos/app/screens/edit_product/widgets/custom_formfield
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/utils/validators/product_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class CustomForm extends StatefulWidget {
   final Size deviceSize;
@@ -20,6 +21,7 @@ class _CustomFormState extends State<CustomForm> {
   Map<String, dynamic> _formData = {};
   final _formKey = GlobalKey<FormState>();
   final _productsController = ProductsController();
+  final ProductModel _product = ProductModel();
 
   final _nameFocusNode = FocusNode();
   final _priceFocusNode = FocusNode();
@@ -46,11 +48,11 @@ class _CustomFormState extends State<CustomForm> {
 
     try {
       ProductModel product = ProductModel.fromJson(_formData);
-      product.id = widget.editedProduct.id;
 
       if (widget.editedProduct == null) {
         await _productsController.addProduct(product);
       } else {
+        product.id = widget.editedProduct.id;
         await _productsController.updateProduct(product);
       }
 
@@ -90,6 +92,7 @@ class _CustomFormState extends State<CustomForm> {
               },
               onSaved: (value) {
                 _formData['name'] = value;
+                _product.setName(value);
               },
             ),
           ),
@@ -119,6 +122,7 @@ class _CustomFormState extends State<CustomForm> {
               },
               onSaved: (value) {
                 _formData['price'] = double.parse(value);
+                _product.setPrice(double.parse(value));
               },
             ),
           ),
@@ -146,6 +150,7 @@ class _CustomFormState extends State<CustomForm> {
               },
               onSaved: (value) {
                 _formData['quantity'] = int.parse(value);
+                _product.setQuantity(int.parse(value));
               },
             ),
           ),
@@ -169,6 +174,7 @@ class _CustomFormState extends State<CustomForm> {
               },
               onSaved: (value) {
                 _formData['image_url'] = value;
+                _product.setImageUrl(value);
               },
             ),
           ),
@@ -177,7 +183,7 @@ class _CustomFormState extends State<CustomForm> {
             height: 50,
             child: RaisedButton(
               child: Text(
-                'Add Product',
+                widget.editedProduct != null ? 'Edit Product' : 'Add Product',
                 style: TextStyle(
                   color: CustomColors.white,
                   fontWeight: FontWeight.w600,

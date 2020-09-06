@@ -9,27 +9,40 @@ class ProductsController = _ProductsControllerBase with _$ProductsController;
 abstract class _ProductsControllerBase with Store {
   ProductsInterface _productsRepository = ProductsRepository();
 
+  // @observable
+  // List<ProductModel> _productsList = [];
+
   @observable
-  List<ProductModel> _productsList = [];
+  String searchedProduct = '';
 
-  Future<void> get fetchProducts async =>
-      await _productsRepository.fetchProducts;
+  @action
+  void setSearchedProduct(String product) => searchedProduct = product;
 
-  Future<List<ProductModel>> get productsList async {
-    _productsList = [];
+  @observable
+  ObservableList<ProductModel> _productsList = ObservableList<ProductModel>();
+
+  ObservableList<ProductModel> get productsList => _productsList;
+
+  @action
+  Future<List<ProductModel>> fetchProducts() async {
     try {
-      _productsList = await _productsRepository.fetchProducts;
-      return _productsList;
+      _productsList = await _productsRepository.fetchProducts.asObservable();
+      return _productsList.toList();
     } catch (error) {
-      print('ERROR when tried to fetch products. ERROR: $error');
+      print(
+          'ERROR when tried to get product list in productsController. ERROR: $error');
       return null;
     }
   }
 
+  @computed
+  List<ProductModel> get getList => [..._productsList];
+
   @action
   Future<void> addProduct(ProductModel product) async {
     await _productsRepository.addProduct(product);
-    await productsList;
+    _productsList.add(product);
+    await fetchProducts();
   }
 
   Future<ProductModel> get bestSeller async {
@@ -40,9 +53,23 @@ abstract class _ProductsControllerBase with Store {
   Future<void> updateProduct(ProductModel product) async {
     try {
       await _productsRepository.updateProduct(product);
-      await productsList;
+      await fetchProducts();
+      final index =
+          _productsList.indexWhere((element) => element.id == product.id);
+      _productsList[index] = product;
     } catch (error) {
-      print(error);
+      print('Could not update product in product controller. ERROR: $error');
     }
+  }
+
+  @action
+  Future<void> deleteProduct(String productId) async {
+    await _productsRepository.deleteProduct(productId.trim());
+    await fetchProducts();
+  }
+
+  @action
+  Future<ProductModel> searchProductById(String productId) async {
+    return await _productsRepository.searchProductById(productId);
   }
 }

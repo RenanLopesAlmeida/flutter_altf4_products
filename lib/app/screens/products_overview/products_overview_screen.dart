@@ -14,20 +14,23 @@ class ProductsOverviewScreen extends StatelessWidget {
   final _productsController = ProductsController();
 
   Future<void> _handleRefresh() async {
-    _productsController.productsList;
+    await _productsController.fetchProducts();
+  }
+
+  Future<void> _handleDeleteProduct(String productId) async {
+    await _productsController.deleteProduct(productId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 50),
-        child: BackAppbar('Manage Products'),
-      ),
-      backgroundColor: CustomColors.headerGradient[1],
-      body: Observer(builder: (_) {
-        return FutureBuilder<List<ProductModel>>(
-          future: _productsController.productsList,
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 50),
+          child: BackAppbar('Manage Products'),
+        ),
+        backgroundColor: CustomColors.headerGradient[1],
+        body: FutureBuilder(
+          future: _productsController.fetchProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return LiquidPullToRefresh(
@@ -35,19 +38,23 @@ class ProductsOverviewScreen extends StatelessWidget {
                 animSpeedFactor: 2,
                 color: CustomColors.headerGradient[0],
                 onRefresh: _handleRefresh,
-                child: ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (_, index) => ProductOverviewTile(
-                    snapshot.data[index],
-                  ),
-                ),
+                child: Observer(builder: (_) {
+                  var productList = _productsController.productsList;
+                  return ListView.builder(
+                    itemCount: productList.length,
+                    itemBuilder: (_, index) => ProductOverviewTile(
+                      product: productList[index],
+                      handleDeleteProduct: () {
+                        _handleDeleteProduct(productList[index].id);
+                      },
+                    ),
+                  );
+                }),
               );
             }
 
             return Center(child: CustomCircularProgress());
           },
-        );
-      }),
-    );
+        ));
   }
 }

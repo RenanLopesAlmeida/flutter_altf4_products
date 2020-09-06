@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
         EditProductScreen.routeName: (context) => EditProductScreen(),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
       },
-      home: FutureBuilder<List<ProductModel>>(
-        future: _productsController.productsList,
+      home: FutureBuilder(
+        future: _productsController.fetchProducts(),
         builder: (context, snapshot) {
           if (snapshot.error != null) {
             Center(child: Text('Could not fetch products'));

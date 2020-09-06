@@ -1,13 +1,39 @@
-class ProductModel {
+import 'package:mobx/mobx.dart';
+part 'product_model.g.dart';
+
+class ProductModel = _ProductModelBase with _$ProductModel;
+
+abstract class _ProductModelBase with Store {
   String id;
+
+  @observable
   String name;
+
+  @observable
   int quantity;
+
+  @observable
   double price;
+
+  @observable
   String imageUrl;
 
-  ProductModel({this.id, this.name, this.quantity, this.price, this.imageUrl});
+  _ProductModelBase(
+      {this.id, this.name, this.quantity, this.price, this.imageUrl});
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
+  @action
+  setName(String name) => this.name = name;
+
+  @action
+  setQuantity(int quantity) => this.quantity = quantity;
+
+  @action
+  setPrice(double price) => this.price = price;
+
+  @action
+  setImageUrl(String imageUrl) => this.imageUrl = imageUrl;
+
+  _ProductModelBase.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
     this.name = json['name'];
     this.quantity = json['quantity'];
