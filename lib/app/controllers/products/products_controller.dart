@@ -45,7 +45,12 @@ abstract class _ProductsControllerBase with Store {
   }
 
   Future<ProductModel> get bestSeller async {
-    return _productsList[0];
+    try {
+      return await _productsRepository.bestSeller;
+    } catch (error) {
+      print('error when tried to fetch best seller product');
+      throw error;
+    }
   }
 
   @action
@@ -53,9 +58,6 @@ abstract class _ProductsControllerBase with Store {
     try {
       await _productsRepository.updateProduct(product);
       await fetchProducts();
-      // final index =
-      //     _productsList.indexWhere((element) => element.id == product.id);
-      // _productsList[index] = product;
     } catch (error) {
       print('Could not update product in product controller. ERROR: $error');
     }
@@ -63,8 +65,12 @@ abstract class _ProductsControllerBase with Store {
 
   @action
   Future<void> deleteProduct(String productId) async {
-    await _productsRepository.deleteProduct(productId.trim());
-    await fetchProducts();
+    try {
+      await _productsRepository.deleteProduct(productId.trim());
+      await fetchProducts();
+    } catch (error) {
+      print('Error when tried to delete a product. ERROR: $error');
+    }
   }
 
   @action

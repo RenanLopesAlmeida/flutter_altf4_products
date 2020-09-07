@@ -31,6 +31,8 @@ class CustomIconButton extends StatelessWidget {
           borderRadius: (paperRadius)
               ? BorderRadius.only(
                   topLeft: Radius.circular(30),
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
                 )
               : BorderRadius.circular(20),
         ),

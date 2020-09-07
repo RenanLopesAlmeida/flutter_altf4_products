@@ -7,6 +7,9 @@ class ProductsRepository extends ProductsInterface {
   CollectionReference productsCollection =
       FirebaseFirestore.instance.collection('products');
 
+  CollectionReference bestSellerCollection =
+      FirebaseFirestore.instance.collection('best-seller');
+
   ObservableList<ProductModel> _productsList = ObservableList<ProductModel>();
 
   get productsList => _productsList;
@@ -26,12 +29,22 @@ class ProductsRepository extends ProductsInterface {
       return _productsList;
     } catch (error) {
       print('Error when tried to fetch products on repository. ERROR: $error');
-      return null;
+      throw error;
     }
   }
 
   Future<ProductModel> get bestSeller async {
-    //return productsList[0];
+    try {
+      final querySnapshot = await bestSellerCollection.get();
+      String productBestSellerId = querySnapshot.docs[0].id.trim();
+
+      ProductModel product = await this.searchProductById(productBestSellerId);
+
+      return product;
+    } catch (error) {
+      print('ERROR when tried to fetch best seller product');
+      throw error;
+    }
   }
 
   @override
@@ -47,7 +60,7 @@ class ProductsRepository extends ProductsInterface {
       //_productsList = List.from(_productsList..add(product));
     } catch (error) {
       print('Error when tried to fetch products. ERROR: $error');
-      return null;
+      throw error;
     }
   }
 
@@ -57,10 +70,6 @@ class ProductsRepository extends ProductsInterface {
       await fetchProducts;
       await productsCollection.doc(product.id).update(product.toJson());
       await fetchProducts;
-      // final index =
-      //     _productsList.indexWhere((element) => element.id == product.id);
-      // _productsList[index] = product;
-      //await fetchProducts;
     } catch (error) {
       print('Error when tried to Update product. ERROR: $error');
     }
@@ -72,7 +81,6 @@ class ProductsRepository extends ProductsInterface {
     try {
       await productsCollection.doc(productId).delete();
       await fetchProducts;
-      // _productsList.removeWhere((element) => element.id == productId);
     } catch (error) {
       print('error when tried to delete a product. ERROR: $error');
     }

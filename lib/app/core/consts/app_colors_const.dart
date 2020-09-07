@@ -19,4 +19,5 @@ class CustomColors {
   static const Color whiteCard = Color(0xffFAF9FF);
   static const Color cardTitle = Color(0xff555555);
   static const Color favoriteBorderColor = Color(0xff818181);
+  static const Color orange = Color(0xffF27F02);
 }

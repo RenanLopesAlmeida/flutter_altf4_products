@@ -4,7 +4,6 @@ import 'package:altf4_produtos/app/screens/edit_product/widgets/custom_formfield
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/utils/validators/product_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 class CustomForm extends StatefulWidget {

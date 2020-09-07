@@ -17,7 +17,7 @@ class ProductHeaderCard extends StatelessWidget {
             height: 150,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: CustomColors.greyCard,
+              color: CustomColors.darkGrey.withOpacity(0.3),
               borderRadius: const BorderRadius.vertical(
                 top: const Radius.circular(20),
               ),
