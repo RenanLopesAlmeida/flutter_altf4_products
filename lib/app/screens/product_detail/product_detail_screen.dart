@@ -32,7 +32,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size(double.infinity, 50),
+          preferredSize: Size(double.infinity, 60),
           child: BackAppbar(product.name)),
       backgroundColor: CustomColors.bodyColor,
       body: Container(
@@ -68,13 +68,47 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
               ),
-              ProductInfo(
-                title: 'Quantity',
-                value: product.quantity,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                child: ListTile(
+                  leading: Text(
+                    'Quantity',
+                    style: TextStyle(
+                      color: CustomColors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  trailing: Text(
+                    product.quantity.toString(),
+                    style: TextStyle(
+                      color: CustomColors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-              ProductInfo(
-                title: 'Price',
-                value: product.price,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
+                child: ListTile(
+                  leading: Text(
+                    'Price',
+                    style: TextStyle(
+                      color: CustomColors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  trailing: Text(
+                    'R\$ ${product.price.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      color: CustomColors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

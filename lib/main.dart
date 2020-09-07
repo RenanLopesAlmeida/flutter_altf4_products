@@ -5,14 +5,17 @@ import 'package:altf4_produtos/app/screens/home/home_screen.dart';
 import 'package:altf4_produtos/app/screens/product_detail/product_detail_screen.dart';
 import 'package:altf4_produtos/app/screens/products_overview/products_overview_screen.dart';
 import 'package:altf4_produtos/app/screens/search_product/search_product_screen.dart';
-import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/widgets/custom_circular_progress.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  GetIt getIt = GetIt.instance;
+  getIt.registerSingleton<ProductsController>(ProductsController());
   runApp(MyApp());
 }
 

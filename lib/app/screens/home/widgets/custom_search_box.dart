@@ -10,7 +10,7 @@ class CustomSearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      //padding: const EdgeInsets.fromLTRB(20, 20, 0, 25),
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -21,7 +21,7 @@ class CustomSearchBox extends StatelessWidget {
           bottomRight: Radius.circular(30),
         ),
       ),
-      child: Center(child: child),
+      child: child,
     );
   }
 }

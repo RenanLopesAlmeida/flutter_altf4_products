@@ -53,9 +53,9 @@ abstract class _ProductsControllerBase with Store {
     try {
       await _productsRepository.updateProduct(product);
       await fetchProducts();
-      final index =
-          _productsList.indexWhere((element) => element.id == product.id);
-      _productsList[index] = product;
+      // final index =
+      //     _productsList.indexWhere((element) => element.id == product.id);
+      // _productsList[index] = product;
     } catch (error) {
       print('Could not update product in product controller. ERROR: $error');
     }

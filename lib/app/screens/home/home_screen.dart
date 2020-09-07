@@ -8,10 +8,11 @@ import 'package:altf4_produtos/app/shared/widgets/appbar/custom_appbar.dart';
 import 'package:altf4_produtos/app/shared/widgets/custom_circular_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 class HomeScreen extends StatelessWidget {
   static final String routeName = '/home';
-  final _productsController = ProductsController();
+  final _productsController = GetIt.instance.get<ProductsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -77,20 +78,19 @@ class HomeScreen extends StatelessWidget {
                   child: FutureBuilder(
                     future: _productsController.fetchProducts(),
                     builder: (context, snapshot) {
-                      var productList = _productsController.productsList;
                       if (snapshot.hasData) {
-                        return Container(
-                          child: Observer(builder: (_) {
-                            return ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
-                              itemCount: productList.length,
-                              itemBuilder: (context, index) {
-                                return ProductTile(product: productList[index]);
-                              },
-                            );
-                          }),
-                        );
+                        return Observer(builder: (_) {
+                          var productList = _productsController.productsList;
+
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: productList.length,
+                            itemBuilder: (context, index) {
+                              return ProductTile(product: productList[index]);
+                            },
+                          );
+                        });
                       }
 
                       return Center(child: CustomCircularProgress());

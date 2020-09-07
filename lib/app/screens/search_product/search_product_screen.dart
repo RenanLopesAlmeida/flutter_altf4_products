@@ -1,6 +1,7 @@
 import 'package:altf4_produtos/app/controllers/products/products_controller.dart';
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/home/widgets/custom_search_box.dart';
+import 'package:altf4_produtos/app/shared/widgets/appbar/back_appbar.dart';
 import 'package:altf4_produtos/app/shared/widgets/product_tile.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/widgets/custom_circular_progress.dart';
@@ -35,16 +36,9 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
     final _deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: CustomColors.headerGradient[1],
-        elevation: 0,
-        title: Text(
-          'Search Product',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 60),
+        child: BackAppbar('Search Product'),
       ),
       body: Container(
         width: _deviceSize.width,
@@ -90,10 +84,11 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                             decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(20),
                               border: InputBorder.none,
                               hintText: 'Search a product by ID',
                               hintStyle: TextStyle(
-                                height: 0,
+                                height: 0.3,
                                 color: CustomColors.white,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -114,6 +109,7 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                     CustomIconButton(
                       handleCallback: this._handleSearch,
                       containerSize: Size(65, 65),
+                      paperRadius: false,
                     ),
                   ],
                 ),

@@ -10,10 +10,10 @@ class CustomFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 60,
       width: deviceSize.width,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      padding: const EdgeInsets.only(left: 20),
+      padding: const EdgeInsets.only(left: 20, right: 15),
       decoration: BoxDecoration(
         color: CustomColors.white.withOpacity(0.6),
         borderRadius: BorderRadius.circular(20),

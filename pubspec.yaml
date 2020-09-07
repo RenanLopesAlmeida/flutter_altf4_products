@@ -29,6 +29,7 @@ dependencies:
   mobx:
   flutter_mobx:
   liquid_pull_to_refresh: ^2.0.0
+  get_it: ^4.0.4
 
 
   # The following adds the Cupertino Icons font to your application.

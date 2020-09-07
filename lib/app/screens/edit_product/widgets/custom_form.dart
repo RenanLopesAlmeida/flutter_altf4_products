@@ -5,6 +5,7 @@ import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/utils/validators/product_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 class CustomForm extends StatefulWidget {
   final Size deviceSize;
@@ -20,7 +21,7 @@ class CustomForm extends StatefulWidget {
 class _CustomFormState extends State<CustomForm> {
   Map<String, dynamic> _formData = {};
   final _formKey = GlobalKey<FormState>();
-  final _productsController = ProductsController();
+  final _productsController = GetIt.instance.get<ProductsController>();
   final ProductModel _product = ProductModel();
 
   final _nameFocusNode = FocusNode();
@@ -87,9 +88,7 @@ class _CustomFormState extends State<CustomForm> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              validator: (value) {
-                return ProductValidator.nameValidator(value);
-              },
+              validator: ProductValidator.nameValidator,
               onSaved: (value) {
                 _formData['name'] = value;
                 _product.setName(value);
@@ -158,6 +157,7 @@ class _CustomFormState extends State<CustomForm> {
             deviceSize: widget.deviceSize,
             child: TextFormField(
               initialValue: widget.initValues['image_url'],
+              keyboardType: TextInputType.url,
               decoration: InputDecoration(
                 labelText: 'Image URL',
                 labelStyle: TextStyle(
@@ -169,9 +169,7 @@ class _CustomFormState extends State<CustomForm> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              validator: (value) {
-                return ProductValidator.imageURLValidator(value);
-              },
+              validator: ProductValidator.imageURLValidator,
               onSaved: (value) {
                 _formData['image_url'] = value;
                 _product.setImageUrl(value);
