@@ -20,14 +20,15 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
 
   final _formKey = GlobalKey<FormState>();
   final _product = ProductsController();
+  bool hasError = false;
 
   Future<void> _handleSearch() async {
     _formKey.currentState.save();
     try {
       _product.setSearchedProduct(searchedProduct);
-      _product.searchProductById();
+      await _product.searchProductById();
     } catch (error) {
-      print(error);
+      hasError = true;
     }
   }
 
@@ -128,7 +129,18 @@ class _SearchProductScreenState extends State<SearchProductScreen> {
                               );
                             }
 
-                            return Center(child: CustomCircularProgress());
+                            return Center(
+                              child: (!hasError)
+                                  ? CustomCircularProgress()
+                                  : Text(
+                                      'Please insert a valid product Id',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                            );
                           },
                         ),
                       ),

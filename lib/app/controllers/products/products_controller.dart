@@ -83,7 +83,7 @@ abstract class _ProductsControllerBase with Store {
       return null;
     } catch (error) {
       print('Error when tried to search product in controller. ERROR: $error');
-      return null;
+      throw error;
     }
   }
 }

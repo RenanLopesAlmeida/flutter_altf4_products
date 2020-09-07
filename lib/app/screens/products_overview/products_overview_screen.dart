@@ -18,8 +18,28 @@ class ProductsOverviewScreen extends StatelessWidget {
     await _productsController.fetchProducts();
   }
 
-  Future<void> _handleDeleteProduct(String productId) async {
-    await _productsController.deleteProduct(productId);
+  Future<void> _handleDeleteProduct(
+      String productId, BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Are you sure ?'),
+        content: Text('Do you want to remove this product?'),
+        actions: <Widget>[
+          FlatButton(
+              child: Text('No'),
+              onPressed: () {
+                Navigator.of(ctx).pop(false);
+              }),
+          FlatButton(
+              child: Text('Yes'),
+              onPressed: () async {
+                await _productsController.deleteProduct(productId);
+                Navigator.of(ctx).pop(true);
+              }),
+        ],
+      ),
+    );
   }
 
   @override
@@ -47,7 +67,7 @@ class ProductsOverviewScreen extends StatelessWidget {
                     itemBuilder: (_, index) => ProductOverviewTile(
                       product: productList[index],
                       handleDeleteProduct: () {
-                        _handleDeleteProduct(productList[index].id);
+                        _handleDeleteProduct(productList[index].id, context);
                       },
                     ),
                   ),
