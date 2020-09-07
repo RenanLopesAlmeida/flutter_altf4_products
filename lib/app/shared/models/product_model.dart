@@ -28,7 +28,7 @@ abstract class _ProductModelBase with Store {
   setQuantity(int quantity) => this.quantity = quantity;
 
   @action
-  setPrice(double price) => this.price = price;
+  setPrice(double price) => this.price = double.parse(price.toStringAsFixed(2));
 
   @action
   setImageUrl(String imageUrl) => this.imageUrl = imageUrl;

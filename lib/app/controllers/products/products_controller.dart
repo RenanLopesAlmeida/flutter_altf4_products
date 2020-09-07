@@ -9,19 +9,18 @@ class ProductsController = _ProductsControllerBase with _$ProductsController;
 abstract class _ProductsControllerBase with Store {
   ProductsInterface _productsRepository = ProductsRepository();
 
-  // @observable
-  // List<ProductModel> _productsList = [];
-
-  @observable
-  String searchedProduct = '';
-
-  @action
-  void setSearchedProduct(String product) => searchedProduct = product;
-
   @observable
   ObservableList<ProductModel> _productsList = ObservableList<ProductModel>();
 
   ObservableList<ProductModel> get productsList => _productsList;
+
+  @observable
+  String searchedProductId;
+
+  @action
+  void setSearchedProduct(String productId) {
+    searchedProductId = productId;
+  }
 
   @action
   Future<List<ProductModel>> fetchProducts() async {
@@ -69,7 +68,16 @@ abstract class _ProductsControllerBase with Store {
   }
 
   @action
-  Future<ProductModel> searchProductById(String productId) async {
-    return await _productsRepository.searchProductById(productId);
+  Future<ProductModel> searchProductById() async {
+    try {
+      if (searchedProductId != null && searchedProductId.isNotEmpty) {
+        return await _productsRepository.searchProductById(searchedProductId);
+      }
+
+      return null;
+    } catch (error) {
+      print('Error when tried to search product in controller. ERROR: $error');
+      return null;
+    }
   }
 }

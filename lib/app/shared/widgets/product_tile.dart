@@ -7,8 +7,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ProductTile extends StatelessWidget {
   final ProductModel product;
+  final Size containerSize;
 
-  ProductTile({this.product});
+  ProductTile({this.product, this.containerSize = const Size(200, 200)});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,8 @@ class ProductTile extends StatelessWidget {
         child: Observer(
           builder: (context) {
             return Container(
-              height: 200,
-              width: 200,
+              height: containerSize.height,
+              width: containerSize.width,
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: Card(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -78,7 +79,7 @@ class ProductTile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(top: 10, left: 10),
                         child: Text(
-                          'R\$ ${product.price}',
+                          'R\$ ${product.price.toStringAsFixed(2)}',
                           style: TextStyle(
                             color: CustomColors.cardMoneyColor,
                             fontWeight: FontWeight.w600,

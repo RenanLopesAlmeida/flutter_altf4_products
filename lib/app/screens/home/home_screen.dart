@@ -1,7 +1,7 @@
 import 'package:altf4_produtos/app/controllers/products/products_controller.dart';
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
 import 'package:altf4_produtos/app/screens/edit_product/edit_product_screen.dart';
-import 'package:altf4_produtos/app/screens/home/widgets/product_tile.dart';
+import 'package:altf4_produtos/app/shared/widgets/product_tile.dart';
 import 'package:altf4_produtos/app/screens/products_overview/products_overview_screen.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/widgets/appbar/custom_appbar.dart';
@@ -86,9 +86,7 @@ class HomeScreen extends StatelessWidget {
                               physics: BouncingScrollPhysics(),
                               itemCount: productList.length,
                               itemBuilder: (context, index) {
-                                return ProductTile(
-                                  product: productList[index],
-                                );
+                                return ProductTile(product: productList[index]);
                               },
                             );
                           }),

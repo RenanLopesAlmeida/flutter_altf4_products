@@ -17,22 +17,6 @@ mixin _$ProductsController on _ProductsControllerBase, Store {
               name: '_ProductsControllerBase.getList'))
           .value;
 
-  final _$searchedProductAtom =
-      Atom(name: '_ProductsControllerBase.searchedProduct');
-
-  @override
-  String get searchedProduct {
-    _$searchedProductAtom.reportRead();
-    return super.searchedProduct;
-  }
-
-  @override
-  set searchedProduct(String value) {
-    _$searchedProductAtom.reportWrite(value, super.searchedProduct, () {
-      super.searchedProduct = value;
-    });
-  }
-
   final _$_productsListAtom =
       Atom(name: '_ProductsControllerBase._productsList');
 
@@ -46,6 +30,22 @@ mixin _$ProductsController on _ProductsControllerBase, Store {
   set _productsList(ObservableList<ProductModel> value) {
     _$_productsListAtom.reportWrite(value, super._productsList, () {
       super._productsList = value;
+    });
+  }
+
+  final _$searchedProductIdAtom =
+      Atom(name: '_ProductsControllerBase.searchedProductId');
+
+  @override
+  String get searchedProductId {
+    _$searchedProductIdAtom.reportRead();
+    return super.searchedProductId;
+  }
+
+  @override
+  set searchedProductId(String value) {
+    _$searchedProductIdAtom.reportWrite(value, super.searchedProductId, () {
+      super.searchedProductId = value;
     });
   }
 
@@ -85,20 +85,19 @@ mixin _$ProductsController on _ProductsControllerBase, Store {
       AsyncAction('_ProductsControllerBase.searchProductById');
 
   @override
-  Future<ProductModel> searchProductById(String productId) {
-    return _$searchProductByIdAsyncAction
-        .run(() => super.searchProductById(productId));
+  Future<ProductModel> searchProductById() {
+    return _$searchProductByIdAsyncAction.run(() => super.searchProductById());
   }
 
   final _$_ProductsControllerBaseActionController =
       ActionController(name: '_ProductsControllerBase');
 
   @override
-  void setSearchedProduct(String product) {
+  void setSearchedProduct(String productId) {
     final _$actionInfo = _$_ProductsControllerBaseActionController.startAction(
         name: '_ProductsControllerBase.setSearchedProduct');
     try {
-      return super.setSearchedProduct(product);
+      return super.setSearchedProduct(productId);
     } finally {
       _$_ProductsControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -107,7 +106,7 @@ mixin _$ProductsController on _ProductsControllerBase, Store {
   @override
   String toString() {
     return '''
-searchedProduct: ${searchedProduct},
+searchedProductId: ${searchedProductId},
 getList: ${getList}
     ''';
   }

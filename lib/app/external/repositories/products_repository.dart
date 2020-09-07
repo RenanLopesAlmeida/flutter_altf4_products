@@ -82,7 +82,7 @@ class ProductsRepository extends ProductsInterface {
   Future<ProductModel> searchProductById(String productId) async {
     final snapshot =
         await productsCollection.where('id', isEqualTo: productId).get();
-    ProductModel product = ProductModel.fromJson(snapshot.docs[0].data());
+    final product = ProductModel.fromJson(snapshot.docs[0].data());
 
     return product;
   }

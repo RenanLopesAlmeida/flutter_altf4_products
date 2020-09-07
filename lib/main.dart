@@ -4,6 +4,7 @@ import 'package:altf4_produtos/app/screens/edit_product/edit_product_screen.dart
 import 'package:altf4_produtos/app/screens/home/home_screen.dart';
 import 'package:altf4_produtos/app/screens/product_detail/product_detail_screen.dart';
 import 'package:altf4_produtos/app/screens/products_overview/products_overview_screen.dart';
+import 'package:altf4_produtos/app/screens/search_product/search_product_screen.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/widgets/custom_circular_progress.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         ProductsOverviewScreen.routeName: (context) => ProductsOverviewScreen(),
         EditProductScreen.routeName: (context) => EditProductScreen(),
         ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+        SearchProductScreen.routeName: (context) => SearchProductScreen(),
       },
       home: FutureBuilder(
         future: _productsController.fetchProducts(),
