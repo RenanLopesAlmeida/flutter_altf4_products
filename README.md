@@ -1,12 +1,23 @@
-# altf4_produtos
+# Sobre | About
 
-## Como está ficando:
+Aplicativo feito para um desafio técnico em um processo seletivo que consistia em listar todos os produtos, pesquisar um produto (pelo seu ID), visualizar um único produto, editar e excluir um produto.
+
+Application made for a technical challenge to a job opportunity that consisted of listing all products, searching for a product (by its ID), viewing a single product, editing and deleting a product.
+
+## What did I use
+
+- Flutter
+- MobX
+- GetIt
+- liquid_pull_to_refresh
+- Dependency Injection
+- Solid
+- Firestore
 
 
-![image](https://user-images.githubusercontent.com/17504941/92332668-ec907d00-f055-11ea-95ec-0acc5d4efb9d.png)
 
-![image](https://user-images.githubusercontent.com/17504941/92332492-ac7cca80-f054-11ea-8a1a-e952953c45ce.png)
+## Aplicativo Final | How it looks like:
 
-![image](https://user-images.githubusercontent.com/17504941/92332415-67589880-f054-11ea-9e19-8bb1b7afde4c.png)
+![parte-1](https://user-images.githubusercontent.com/17504941/92418266-00fb7500-f13d-11ea-99fd-29e01c610962.gif)
 
-![image](https://user-images.githubusercontent.com/17504941/92332444-7e978600-f054-11ea-9be1-8432e0a7d075.png)
+![parte-2](https://user-images.githubusercontent.com/17504941/92418309-3dc76c00-f13d-11ea-8bc2-cee99420bec2.gif)
