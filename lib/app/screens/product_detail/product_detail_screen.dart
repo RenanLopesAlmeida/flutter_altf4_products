@@ -1,5 +1,4 @@
 import 'package:altf4_produtos/app/core/consts/app_colors_const.dart';
-import 'package:altf4_produtos/app/screens/product_detail/widgets/product_info.dart';
 import 'package:altf4_produtos/app/shared/models/product_model.dart';
 import 'package:altf4_produtos/app/shared/widgets/appbar/back_appbar.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       appBar: PreferredSize(
           preferredSize: Size(double.infinity, 60),
           child: BackAppbar(product.name)),
-      backgroundColor: CustomColors.bodyColor,
+      backgroundColor: CustomColors.white,
       body: Container(
         height: _deviceSize.height,
         width: _deviceSize.width,

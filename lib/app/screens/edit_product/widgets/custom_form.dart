@@ -24,10 +24,19 @@ class _CustomFormState extends State<CustomForm> {
   final _productsController = GetIt.instance.get<ProductsController>();
   final ProductModel _product = ProductModel();
 
-  final _nameFocusNode = FocusNode();
-  final _priceFocusNode = FocusNode();
-  final _quantityFocusNode = FocusNode();
-  final _imageFocusNode = FocusNode();
+  FocusNode _nameFocusNode;
+  FocusNode _priceFocusNode;
+  FocusNode _quantityFocusNode;
+  FocusNode _imageFocusNode;
+
+  @override
+  void initState() {
+    _nameFocusNode = FocusNode();
+    _priceFocusNode = FocusNode();
+    _quantityFocusNode = FocusNode();
+    _imageFocusNode = FocusNode();
+    super.initState();
+  }
 
   @override
   dispose() {
@@ -89,6 +98,9 @@ class _CustomFormState extends State<CustomForm> {
                 ),
               ),
               validator: ProductValidator.nameValidator,
+              onFieldSubmitted: (value) {
+                FocusScope.of(context).requestFocus(_priceFocusNode);
+              },
               onSaved: (value) {
                 _formData['name'] = value;
                 _product.setName(value);
@@ -107,6 +119,15 @@ class _CustomFormState extends State<CustomForm> {
                 labelStyle: TextStyle(
                   height: 0,
                 ),
+                prefix: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Text(
+                    'R\$',
+                    style: TextStyle(
+                      color: CustomColors.primary,
+                    ),
+                  ),
+                ),
                 border: InputBorder.none,
                 errorStyle: TextStyle(
                   height: 0.3,
@@ -114,7 +135,7 @@ class _CustomFormState extends State<CustomForm> {
                 ),
               ),
               onFieldSubmitted: (value) {
-                FocusScope.of(context).requestFocus(_priceFocusNode);
+                FocusScope.of(context).requestFocus(_quantityFocusNode);
               },
               validator: (value) {
                 return ProductValidator.numberValidator(value, 'Price');
@@ -156,6 +177,7 @@ class _CustomFormState extends State<CustomForm> {
           CustomFormField(
             deviceSize: widget.deviceSize,
             child: TextFormField(
+              focusNode: _imageFocusNode,
               initialValue: widget.initValues['image_url'],
               keyboardType: TextInputType.url,
               decoration: InputDecoration(
